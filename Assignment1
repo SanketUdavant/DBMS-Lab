@@ -1,0 +1,155 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.30-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| Company            |
+| EMPLOYEE           |
+| Employee           |
+| Madhuri            |
+| Movies             |
+| STUDENT            |
+| b2                 |
+| blood_bank         |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| stu_info           |
+| sys                |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> ceate Sanket;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ceate Sanket' at line 1
+mysql> create Sanket;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Sanket' at line 1
+mysql> create database Sanket;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| Company            |
+| EMPLOYEE           |
+| Employee           |
+| Madhuri            |
+| Movies             |
+| STUDENT            |
+| Sanket             |
+| b2                 |
+| blood_bank         |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| stu_info           |
+| sys                |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use Sanket;
+Database changed
+mysql> create table Books_read;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table Books_read(Sr.No int,Book_Name varchar(30),Book_Prize int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.No int,Book_Name varchar(30),Book_Prize int)' at line 1
+mysql> create table Books_read(Sr_No int,Book_Name varchar(30),Book_Prize int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from Books_read;
+Empty set (0.00 sec)
+
+mysql> insert into Books_read values(001,HelloWorld,1000);
+ERROR 1054 (42S22): Unknown column 'HelloWorld' in 'field list'
+mysql> insert into Books_read values(001,"HelloWorld",1000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Books_read;
++-------+------------+------------+
+| Sr_No | Book_Name  | Book_Prize |
++-------+------------+------------+
+|     1 | HelloWorld |       1000 |
++-------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert^C
+mysql> select * from Books_read;
++-------+------------+------------+
+| Sr_No | Book_Name  | Book_Prize |
++-------+------------+------------+
+|     1 | HelloWorld |       1000 |
++-------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into Book_read values(002,"YourName",1500),(003,"WaysOfLife",550);
+ERROR 1146 (42S02): Table 'Sanket.Book_read' doesn't exist
+mysql> insert into Books_read values(002,"YourName",1500),(003,"WaysOfLife",550);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Books_read;
++-------+------------+------------+
+| Sr_No | Book_Name  | Book_Prize |
++-------+------------+------------+
+|     1 | HelloWorld |       1000 |
+|     2 | YourName   |       1500 |
+|     3 | WaysOfLife |        550 |
++-------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Books_read (Sr_No,Book_Name) value (004,"Superstar");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from Books_read;
++-------+------------+------------+
+| Sr_No | Book_Name  | Book_Prize |
++-------+------------+------------+
+|     1 | HelloWorld |       1000 |
+|     2 | YourName   |       1500 |
+|     3 | WaysOfLife |        550 |
+|     4 | Superstar  |       NULL |
++-------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update Books_read set Book_Prize=400 where Sr_No=004;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Books_read;
++-------+------------+------------+
+| Sr_No | Book_Name  | Book_Prize |
++-------+------------+------------+
+|     1 | HelloWorld |       1000 |
+|     2 | YourName   |       1500 |
+|     3 | WaysOfLife |        550 |
+|     4 | Superstar  |        400 |
++-------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> ------+------------+------------+
+    -> | Sr_No | Book_Name  | Book_Prize |
+    -> +-------+------------+------------+
+    -> |     1 | HelloWorld |       1000 |
+    -> |     2 | YourName   |       1500 |
+    -> |     3 | WaysOfLife |        550 |
+    -> |     4 | Superstar  |        400 |
+    -> +-------+------------+------------+
+    -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> 
+    -> 
