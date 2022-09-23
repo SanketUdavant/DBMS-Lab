@@ -1,0 +1,748 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.08 sec)
+
+mysql> create dayabase Collge;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dayabase Collge' at line 1
+mysql> create database collge;
+Query OK, 1 row affected (0.46 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| collge             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.04 sec)
+
+mysql> use college;
+ERROR 1049 (42000): Unknown database 'college'
+mysql> use collge;
+Database changed
+mysql> drop databse collge
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databse collge' at line 1
+mysql> drop database collge
+    -> ;
+Query OK, 0 rows affected (0.30 sec)
+
+mysql> create database college;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use college;
+Database changed
+mysql> create table custumer(id int not NULL,name varchar,item varchar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',item varchar)' at line 1
+mysql> create table custumer(id int not NULL,name varchar(255),item varchar(255));
+Query OK, 0 rows affected (0.51 sec)
+
+mysql> select * from college;
+ERROR 1146 (42S02): Table 'college.college' doesn't exist
+mysql> select * from customer;
+ERROR 1146 (42S02): Table 'college.customer' doesn't exist
+mysql> select * from customer
+    -> ;
+ERROR 1146 (42S02): Table 'college.customer' doesn't exist
+mysql> select * from custumer;
+Empty set (0.26 sec)
+
+mysql> insert into custumer(001,Sanket,Hair spray);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '001,Sanket,Hair spray)' at line 1
+mysql> insert into custumer(001,Sanket,Hair_spray);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '001,Sanket,Hair_spray)' at line 1
+mysql> insert into custumer(001,'Sanket','Hair_spray');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '001,'Sanket','Hair_spray')' at line 1
+mysql> insert into custumer('001','Sanket','Hair_spray');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''001','Sanket','Hair_spray')' at line 1
+mysql> insert into custumer('01','Sanket','Hair_spray');;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''01','Sanket','Hair_spray')' at line 1
+ERROR:
+No query specified
+
+mysql> insert into custumer('01','Sanket','Hair_spray');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''01','Sanket','Hair_spray')' at line 1
+mysql> insert into custumer'('01','Sanket','Hair_spray')';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''('01','Sanket','Hair_spray')'' at line 1
+mysql> insert into custumer values('01','Sanket','Hair_spray');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> select * from custumer;
++----+--------+------------+
+| id | name   | item       |
++----+--------+------------+
+|  1 | Sanket | Hair_spray |
++----+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into custumer values(2,'Anonymos','Bubble_gum');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from custumer;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  1 | Sanket   | Hair_spray |
+|  2 | Anonymos | Bubble_gum |
++----+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update custumer
+    -> set item = 'Pen'
+    -> where id = 3;
+Query OK, 0 rows affected (0.04 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  1 | Sanket   | Hair_spray |
+|  2 | Anonymos | Bubble_gum |
++----+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update custumer
+    -> set item ='Pen'
+    -> where id = 1;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  1 | Sanket   | Pen        |
+|  2 | Anonymos | Bubble_gum |
++----+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into custumer values(3,'Ketan','Pencil')'
+    '> ;
+    '>
+    '>
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+;
+
+
+'' at line 1
+mysql> insert into custumer values(3,'Ketan','Pencil'),
+    -> (4,'Anubhav','washing_powder');
+Query OK, 2 rows affected (0.09 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+----------------+
+| id | name     | item           |
++----+----------+----------------+
+|  1 | Sanket   | Pen            |
+|  2 | Anonymos | Bubble_gum     |
+|  3 | Ketan    | Pencil         |
+|  4 | Anubhav  | washing_powder |
++----+----------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from custumer
+    -> where id = 4;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from custumer;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  1 | Sanket   | Pen        |
+|  2 | Anonymos | Bubble_gum |
+|  3 | Ketan    | Pencil     |
++----+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table custumer
+    -> add quantity vachar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(255)' at line 2
+mysql> alter table custumer
+    -> add quantity varchar(255);
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+------------+----------+
+| id | name     | item       | quantity |
++----+----------+------------+----------+
+|  1 | Sanket   | Pen        | NULL     |
+|  2 | Anonymos | Bubble_gum | NULL     |
+|  3 | Ketan    | Pencil     | NULL     |
++----+----------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table custumer
+    -> modify column quantity int;
+Query OK, 3 rows affected (0.45 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+------------+----------+
+| id | name     | item       | quantity |
++----+----------+------------+----------+
+|  1 | Sanket   | Pen        |     NULL |
+|  2 | Anonymos | Bubble_gum |     NULL |
+|  3 | Ketan    | Pencil     |     NULL |
++----+----------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table custumer
+    -> drop column quantity;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  1 | Sanket   | Pen        |
+|  2 | Anonymos | Bubble_gum |
+|  3 | Ketan    | Pencil     |
++----+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> selct id from custumer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct id from custumer' at line 1
+mysql> select id from custumer;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
++----+
+3 rows in set (0.00 sec)
+
+mysql> select * from id = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 2' at line 1
+mysql> select * from custumer id = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 2' at line 1
+mysql> select * from custumer id = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 2' at line 1
+mysql> select * from custumer
+    -> where id = 2;
++----+----------+------------+
+| id | name     | item       |
++----+----------+------------+
+|  2 | Anonymos | Bubble_gum |
++----+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from custumer
+    -> where name like '%n';
++----+-------+--------+
+| id | name  | item   |
++----+-------+--------+
+|  3 | Ketan | Pencil |
++----+-------+--------+
+1 row in set (0.05 sec)
+
+mysql> insert into custumer values
+    -> (4,'Aunbhav',pencil);
+ERROR 1054 (42S22): Unknown column 'pencil' in 'field list'
+mysql> insert into custumer values
+    -> (4,'Aunbhav','pencil);
+    '> ;
+    '>
+    '>
+    '>
+    '> c
+    '> ^C
+mysql> insert into custumer values(4.'Anubhav','Pencil');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Anubhav','Pencil')' at line 1
+mysql> insert into custumer values(4.'Anubhav','Washing_Powder');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Anubhav','Washing_Powder')' at line 1
+mysql> insert into custumer values(3,'Ketan','Pencil'),
+    -> ^C
+mysql> insert into custumer values(4,'Anubhav','Washing Powder');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from custumer;
++----+----------+----------------+
+| id | name     | item           |
++----+----------+----------------+
+|  1 | Sanket   | Pen            |
+|  2 | Anonymos | Bubble_gum     |
+|  3 | Ketan    | Pencil         |
+|  4 | Anubhav  | Washing Powder |
++----+----------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table custumer
+    -> add quantity int,Shiping_ADD varchar(255),mobile int(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Shiping_ADD varchar(255),mobile int(15)' at line 2
+mysql> alter table custumer
+    -> add quantity int;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table custumer
+    -> add Shiping_Add varchar(255),
+    -> add mobile int(15);
+Query OK, 0 rows affected, 1 warning (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select * from custumers
+    -> ;
+ERROR 1146 (42S02): Table 'college.custumers' doesn't exist
+mysql> select * from custumer;
++----+----------+----------------+----------+-------------+--------+
+| id | name     | item           | quantity | Shiping_Add | mobile |
++----+----------+----------------+----------+-------------+--------+
+|  1 | Sanket   | Pen            |     NULL | NULL        |   NULL |
+|  2 | Anonymos | Bubble_gum     |     NULL | NULL        |   NULL |
+|  3 | Ketan    | Pencil         |     NULL | NULL        |   NULL |
+|  4 | Anubhav  | Washing Powder |     NULL | NULL        |   NULL |
++----+----------+----------------+----------+-------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> update custumer
+    -> set quantity = 3
+    -> where id = 1,3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',3' at line 3
+mysql> update custumer
+    -> set quantity = 3
+    -> where id = 1 and 3;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from custumer;
++----+----------+----------------+----------+-------------+--------+
+| id | name     | item           | quantity | Shiping_Add | mobile |
++----+----------+----------------+----------+-------------+--------+
+|  1 | Sanket   | Pen            |        3 | NULL        |   NULL |
+|  2 | Anonymos | Bubble_gum     |     NULL | NULL        |   NULL |
+|  3 | Ketan    | Pencil         |     NULL | NULL        |   NULL |
+|  4 | Anubhav  | Washing Powder |     NULL | NULL        |   NULL |
++----+----------+----------------+----------+-------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> delete from custumer
+    -> wher id < 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id < 5' at line 2
+mysql> delete from custumer
+    -> where id < 5;
+Query OK, 4 rows affected (0.09 sec)
+
+mysql> select * from custumer;
+Empty set (0.00 sec)
+
+mysql> /c
+    -> ^C
+mysql> \c
+mysql> help;
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+notee     (\t) Don't write into outfile.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+
+mysql> insert into custumer values(1,'Sanket','Hair_spray','2',768434654),(2,'Ketan','Pen','1',3654343214);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into custumer values(1,'Sanket','Hair_spray','2','Aurangabad',768434654),(2,'Ketan','Pen','1','Pune',3654343214);
+ERROR 1264 (22003): Out of range value for column 'mobile' at row 2
+mysql> insert into custumer values(1,'Sanket','Hair_spray','2','Aurangabad',768434654),(2,'Ketan','Pen','1','Pune',3654344);
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into custumer values(3,Anonymos,Pencil,4,Mumbai,468446);
+ERROR 1054 (42S22): Unknown column 'Anonymos' in 'field list'
+mysql> insert into custumer values(3,'Anonymos','Pencil',4,'Mumbai',468446);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into custumer values(4,'Anubav','Wahing_Powder',3,'Pune',465454),(5,'Sarthak','BUblle_Gum',8,'MUmbai',789132),(6,'Anonymos2','Medicine',1,'Andheri',21321514),(7,'Anonymos3','Soda',3,'Delhi',857454);
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select*from custumer;
++----+-----------+---------------+----------+-------------+-----------+
+| id | name      | item          | quantity | Shiping_Add | mobile    |
++----+-----------+---------------+----------+-------------+-----------+
+|  1 | Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |
+|  2 | Ketan     | Pen           |        1 | Pune        |   3654344 |
+|  3 | Anonymos  | Pencil        |        4 | Mumbai      |    468446 |
+|  4 | Anubav    | Wahing_Powder |        3 | Pune        |    465454 |
+|  5 | Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |
+|  6 | Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |
+|  7 | Anonymos3 | Soda          |        3 | Delhi       |    857454 |
++----+-----------+---------------+----------+-------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> insert into custumer values(8,'Rohan','Alcohol',2,'Pune',468765432),(9,'Akshay','Bandages',5,'Nashik',42132545),(10,'Anonymos4','',1,'Chennai',12132132);
+Query OK, 3 rows affected (0.10 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from custumer;
++----+-----------+---------------+----------+-------------+-----------+
+| id | name      | item          | quantity | Shiping_Add | mobile    |
++----+-----------+---------------+----------+-------------+-----------+
+|  1 | Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |
+|  2 | Ketan     | Pen           |        1 | Pune        |   3654344 |
+|  3 | Anonymos  | Pencil        |        4 | Mumbai      |    468446 |
+|  4 | Anubav    | Wahing_Powder |        3 | Pune        |    465454 |
+|  5 | Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |
+|  6 | Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |
+|  7 | Anonymos3 | Soda          |        3 | Delhi       |    857454 |
+|  8 | Rohan     | Alcohol       |        2 | Pune        | 468765432 |
+|  9 | Akshay    | Bandages      |        5 | Nashik      |  42132545 |
+| 10 | Anonymos4 |               |        1 | Chennai     |  12132132 |
++----+-----------+---------------+----------+-------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> create table info(Roll_NO int not NULL,Name varchar(255),Age int);
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_college |
++-------------------+
+| custumer          |
+| info              |
++-------------------+
+2 rows in set (0.19 sec)
+
+mysql> insert into info values(50,'Sanket',21),(51.'Ketan',22),(51.'sarthak',21),(52.'Anubhav',22),(52.'Rohan',22),(53.'Akshay',21;)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ketan',22),(51.'sarthak',21),(52.'Anubhav',22),(52.'Rohan',22),(53.'Akshay',21' at line 1
+    -> insert into info values(50,'Sanket',21),(51,'Ketan',22),(51.'sarthak',21),(52.'Anubhav',22),(52.'Rohan',22),(53.'Akshay',21);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+insert into info values(50,'Sanket',21),(51,'Ketan',22),(51.'sarthak',21),(52.' at line 1
+mysql> insert into info values(50,'Sanket',21),(51,'Ketan',22),(52,'sarthak',21),(53,'Anubhav',22),(54,'Rohan',22),(55,'Akshay',21);
+Query OK, 6 rows affected (0.07 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from info;
++---------+---------+------+
+| Roll_NO | Name    | Age  |
++---------+---------+------+
+|      50 | Sanket  |   21 |
+|      51 | Ketan   |   22 |
+|      52 | sarthak |   21 |
+|      53 | Anubhav |   22 |
+|      54 | Rohan   |   22 |
+|      55 | Akshay  |   21 |
++---------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> Select * from custumer;
++----+-----------+---------------+----------+-------------+-----------+
+| id | name      | item          | quantity | Shiping_Add | mobile    |
++----+-----------+---------------+----------+-------------+-----------+
+|  1 | Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |
+|  2 | Ketan     | Pen           |        1 | Pune        |   3654344 |
+|  3 | Anonymos  | Pencil        |        4 | Mumbai      |    468446 |
+|  4 | Anubav    | Wahing_Powder |        3 | Pune        |    465454 |
+|  5 | Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |
+|  6 | Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |
+|  7 | Anonymos3 | Soda          |        3 | Delhi       |    857454 |
+|  8 | Rohan     | Alcohol       |        2 | Pune        | 468765432 |
+|  9 | Akshay    | Bandages      |        5 | Nashik      |  42132545 |
+| 10 | Anonymos4 |               |        1 | Chennai     |  12132132 |
++----+-----------+---------------+----------+-------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> update table custumer
+    -> set item = NULL
+    -> where id = 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table custumer
+set item = NULL
+where id = 10' at line 1
+mysql> update table custumer
+    -> set item = 'non_DEfined'
+    -> where id = 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table custumer
+set item = 'non_DEfined'
+where id = 10' at line 1
+mysql> update custumer
+    -> set item = 'Not_Defined'
+    -> where id = 10;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from custumer;
++----+-----------+---------------+----------+-------------+-----------+
+| id | name      | item          | quantity | Shiping_Add | mobile    |
++----+-----------+---------------+----------+-------------+-----------+
+|  1 | Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |
+|  2 | Ketan     | Pen           |        1 | Pune        |   3654344 |
+|  3 | Anonymos  | Pencil        |        4 | Mumbai      |    468446 |
+|  4 | Anubav    | Wahing_Powder |        3 | Pune        |    465454 |
+|  5 | Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |
+|  6 | Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |
+|  7 | Anonymos3 | Soda          |        3 | Delhi       |    857454 |
+|  8 | Rohan     | Alcohol       |        2 | Pune        | 468765432 |
+|  9 | Akshay    | Bandages      |        5 | Nashik      |  42132545 |
+| 10 | Anonymos4 | Not_Defined   |        1 | Chennai     |  12132132 |
++----+-----------+---------------+----------+-------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> create table order(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,
+    -> order_date datetime,foreign key(custumerID) references custumer(id),
+    -> update custumer^C
+mysql> create table order(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime defult current_timestamp,foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID i' at line 1
+mysql> create table order(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime defult current_timestamp,foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID i' at line 1
+mysql> create table orders(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime defult current_timestamp,foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'defult current_timestamp,foreign key(custumerID) references custumer(id),foreign' at line 1
+mysql> create table orders(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime,foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO));
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table orders(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime,primary key(Se_NO),foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO));
+ERROR 1072 (42000): Key column 'Se_NO' doesn't exist in table
+mysql> create table orders(Sr_NO int not null auto_increment,order_number int,infoID int,custumerID int,order_date datetime,primary key(Sr_NO),foreign key(custumerID) references custumer(id),foreign key(infoID) references info(Roll_NO));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_1' in the referenced table 'custumer'
+mysql> create table orders(id int not null auto_increment,ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,primary key(id),foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(Roll_NO));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_1' in the referenced table 'custumer'
+mysql> alter table info
+    -> add id int not null auto_increment,
+    -> primary key(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key(id)' at line 3
+mysql> alter table info
+    -> add id int not null auto_increment,
+    -> 'primary key(id);
+    '> ^C
+mysql> alter table info
+    -> add id int not null auto_increment,
+    -> 'primary key(id)';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''primary key(id)'' at line 3
+mysql> alter table info
+    -> add id int not null auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> alter table info
+    -> add id int not null auto_increment,key(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(id)' at line 2
+mysql> alter table info
+    -> add id int not null auto_increment,add primary key(id);
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from info;
++---------+---------+------+----+
+| Roll_NO | Name    | Age  | id |
++---------+---------+------+----+
+|      50 | Sanket  |   21 |  1 |
+|      51 | Ketan   |   22 |  2 |
+|      52 | sarthak |   21 |  3 |
+|      53 | Anubhav |   22 |  4 |
+|      54 | Rohan   |   22 |  5 |
+|      55 | Akshay  |   21 |  6 |
++---------+---------+------+----+
+6 rows in set (0.00 sec)
+
+mysql> select * from custumer;
++----+-----------+---------------+----------+-------------+-----------+
+| id | name      | item          | quantity | Shiping_Add | mobile    |
++----+-----------+---------------+----------+-------------+-----------+
+|  1 | Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |
+|  2 | Ketan     | Pen           |        1 | Pune        |   3654344 |
+|  3 | Anonymos  | Pencil        |        4 | Mumbai      |    468446 |
+|  4 | Anubav    | Wahing_Powder |        3 | Pune        |    465454 |
+|  5 | Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |
+|  6 | Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |
+|  7 | Anonymos3 | Soda          |        3 | Delhi       |    857454 |
+|  8 | Rohan     | Alcohol       |        2 | Pune        | 468765432 |
+|  9 | Akshay    | Bandages      |        5 | Nashik      |  42132545 |
+| 10 | Anonymos4 | Not_Defined   |        1 | Chennai     |  12132132 |
++----+-----------+---------------+----------+-------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> alter table custumer
+    -> drop column id;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  alter table info
+    -> ^C
+mysql> alter table custumer
+    -> add id int not null auto_increment,add primary key(id);
+Query OK, 0 rows affected (0.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  create table orders(id int not null auto_increment,ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,add primary key(id),foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(Roll_NO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add primary key(id),foreign key(custumerID) REFERENCES custumer(id),foreign key(' at line 1
+mysql>  create table orders(id int not null auto_increment,ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,add primary key(id),foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(Roll_NO))^X^C
+mysql>  create table orders(id int not null auto_increment,add primary key (id),ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(Roll_NO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add primary key (id),ordernumber int,infoID int,custumerID int,orderdate datetim' at line 1
+mysql>  create table orders(id int,ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(Roll_NO));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_2' in the referenced table 'info'
+mysql>  create table orders(id int,ordernumber int,infoID int,custumerID int,orderdate datetime default current_timestamp,foreign key(custumerID) REFERENCES custumer(id),foreign key(infoID) REFERENCES info(id));
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> alter table info
+    -> deop column id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'deop column id' at line 2
+mysql> alter table info
+    -> drop column id;
+ERROR 1829 (HY000): Cannot drop column 'id': needed in a foreign key constraint 'orders_ibfk_2' of table 'orders'
+mysql> select * from orders;
+Empty set (0.04 sec)
+
+mysql> alter table orders
+    -> modify column id int not null auto_increment,add primary key(id);
+Query OK, 0 rows affected (0.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into orders(ordernumber,infoID,custumerID) values(001,50,1);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`college`.`orders`, CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`infoID`) REFERENCES `info` (`id`))
+mysql> select * from orders
+    -> ;
+Empty set (0.00 sec)
+
+mysql> insert into orders(ordernumber) values(001)(002)(003)(004);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(002)(003)(004)' at line 1
+mysql> insert into orders(ordernumber) values(001)(002)(003)(004);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(002)(003)(004)' at line 1
+mysql> select * from info
+    -> ;
++---------+---------+------+----+
+| Roll_NO | Name    | Age  | id |
++---------+---------+------+----+
+|      50 | Sanket  |   21 |  1 |
+|      51 | Ketan   |   22 |  2 |
+|      52 | sarthak |   21 |  3 |
+|      53 | Anubhav |   22 |  4 |
+|      54 | Rohan   |   22 |  5 |
+|      55 | Akshay  |   21 |  6 |
++---------+---------+------+----+
+6 rows in set (0.00 sec)
+
+mysql> select * from custumer;
++-----------+---------------+----------+-------------+-----------+----+
+| name      | item          | quantity | Shiping_Add | mobile    | id |
++-----------+---------------+----------+-------------+-----------+----+
+| Sanket    | Hair_spray    |        2 | Aurangabad  | 768434654 |  1 |
+| Ketan     | Pen           |        1 | Pune        |   3654344 |  2 |
+| Anonymos  | Pencil        |        4 | Mumbai      |    468446 |  3 |
+| Anubav    | Wahing_Powder |        3 | Pune        |    465454 |  4 |
+| Sarthak   | BUblle_Gum    |        8 | MUmbai      |    789132 |  5 |
+| Anonymos2 | Medicine      |        1 | Andheri     |  21321514 |  6 |
+| Anonymos3 | Soda          |        3 | Delhi       |    857454 |  7 |
+| Rohan     | Alcohol       |        2 | Pune        | 468765432 |  8 |
+| Akshay    | Bandages      |        5 | Nashik      |  42132545 |  9 |
+| Anonymos4 | Not_Defined   |        1 | Chennai     |  12132132 | 10 |
++-----------+---------------+----------+-------------+-----------+----+
+10 rows in set (0.04 sec)
+
+mysql> insert into orders(ordernumber,infoID,custumerID) values(001,1,1);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> Select * from orders;
++----+-------------+--------+------------+---------------------+
+| id | ordernumber | infoID | custumerID | orderdate           |
++----+-------------+--------+------------+---------------------+
+|  2 |           1 |      1 |          1 | 2022-09-23 15:17:18 |
++----+-------------+--------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into orders(ordernumber,infoID,custumerID) values(002,2,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> Select * from orders;
++----+-------------+--------+------------+---------------------+
+| id | ordernumber | infoID | custumerID | orderdate           |
++----+-------------+--------+------------+---------------------+
+|  2 |           1 |      1 |          1 | 2022-09-23 15:17:18 |
+|  3 |           2 |      2 |          2 | 2022-09-23 15:18:21 |
++----+-------------+--------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into orders(ordernumber,infoID,custumerID) values(003,3,5);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into orders(ordernumber,infoID,custumerID) values(004,4,4),(005,5,8),(006,6,9);
+Query OK, 3 rows affected (0.13 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++----+-------------+--------+------------+---------------------+
+| id | ordernumber | infoID | custumerID | orderdate           |
++----+-------------+--------+------------+---------------------+
+|  2 |           1 |      1 |          1 | 2022-09-23 15:17:18 |
+|  3 |           2 |      2 |          2 | 2022-09-23 15:18:21 |
+|  4 |           3 |      3 |          5 | 2022-09-23 15:19:03 |
+|  5 |           4 |      4 |          4 | 2022-09-23 15:20:18 |
+|  6 |           5 |      5 |          8 | 2022-09-23 15:20:18 |
+|  7 |           6 |      6 |          9 | 2022-09-23 15:20:18 |
++----+-------------+--------+------------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> select custumer.name,custumer.item,orders.id,orders.ordernumber
+    -> from custumer
+    -> inner join orders
+    -> on custumer.id = orders.custumerID
+    -> order by custumer.item;
++---------+---------------+----+-------------+
+| name    | item          | id | ordernumber |
++---------+---------------+----+-------------+
+| Rohan   | Alcohol       |  6 |           5 |
+| Akshay  | Bandages      |  7 |           6 |
+| Sarthak | BUblle_Gum    |  4 |           3 |
+| Sanket  | Hair_spray    |  2 |           1 |
+| Ketan   | Pen           |  3 |           2 |
+| Anubav  | Wahing_Powder |  5 |           4 |
++---------+---------------+----+-------------+
+6 rows in set (0.00 sec)
+
+mysql>
